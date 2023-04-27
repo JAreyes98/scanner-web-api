@@ -16,8 +16,12 @@ func main() {
 	//r.Use(middleware.SecurityMiddleware())
 
 	dbsetup.ConnectDatabase()
-	v1 := r.Group("/api/v1")
-	v1.GET("/products", controllers.All)
+	apiAuth := r.Group("/api/auth")
+	apiAuth.POST("/jwt", controllers.GenerateToken)
+
+	api := r.Group("/api/v1").Use(middleware.Auth())
+	api.GET("/products", controllers.All)
+	api.GET("/products/:barcode", controllers.ProductSearch)
 
 	if err := r.Run(":8080"); err != nil {
 		panic(err)

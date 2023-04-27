@@ -10,7 +10,7 @@ import (
 var DB *gorm.DB
 
 func ConnectDatabase() {
-	db_hostname := "192.168.1.23" //os.Getenv("POSTGRES_HOST")
+	db_hostname := "192.168.1.30" //os.Getenv("POSTGRES_HOST")
 	db_name := "inventory"        //os.Getenv("POSTGRES_DB")
 	db_user := "postgres"         //os.Getenv("POSTGRES_USER")
 	db_pass := "pepito"           //os.Getenv("POSTGRES_PASSWORD")

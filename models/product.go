@@ -5,6 +5,7 @@ import "time"
 type Product struct {
 	Id       int       `json:"id" gorm:"primary_key"`
 	Name     string    `json:"name"`
+	Barcode  string    `json:"barcode"`
 	Stock    int       `json:"stock"`
 	CreateAt time.Time `json:"create_at" gorm:"autoCreateTime"`
 	UpdateAt time.Time `json:"update_at" gorm:"autoUpdateTime"`
