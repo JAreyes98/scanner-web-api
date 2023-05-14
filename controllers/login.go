@@ -23,7 +23,8 @@ func GenerateToken(context *gin.Context) {
 	}
 
 	// check if email exists and password is correct
-	record := dbsetup.DB.Where("\"Nombre\" = ? and \"baja\" = 1", request.Username).First(&user)
+	record := dbsetup.DB.Where("login = ? and baja = 0", request.Username).First(&user)
+	//record := dbsetup.DB.Where("\"login\" = ? and \"baja\" = 0", request.Username).First(&user)
 	if record.Error != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"error": "No se encontro un usuario activo con nombre de usuario: " + request.Username})
 		context.Abort()

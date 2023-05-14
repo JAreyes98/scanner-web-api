@@ -8,7 +8,7 @@ import (
 	"scanner-web-api/models"
 )
 
-func All(c *gin.Context) {
+func AllProducts(c *gin.Context) {
 	var data []models.Product
 	err := dbsetup.DB.Find(&data).Error
 	if err != nil {
@@ -21,7 +21,7 @@ func ProductSearch(c *gin.Context) {
 	var product models.Product
 	barcode := c.Param("barcode")
 
-	if err := dbsetup.DB.Where("barcode = ?", barcode).First(&product).Error; err != nil {
+	if err := dbsetup.DB.Where(" \"CodBarraSupermercado\" = ?", barcode).First(&product).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "No se ha encontrado el producto con codigo de barras: " + barcode})
 		return
 	}
