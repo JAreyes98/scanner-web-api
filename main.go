@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"os"
 )
 
 func main() {
@@ -28,7 +30,10 @@ func main() {
 	api.POST("/inventory/order", CheckOrder)
 	api.POST("/inventory/warehouse", CheckWarehouse)
 
-	if err := r.Run(":8080"); err != nil {
+	webport := os.Getenv("PORT")
+
+	fmt.Println("Puerto ejecucion: ", webport)
+	if err := r.Run(":" + webport); err != nil {
 		panic(err)
 	}
 }
