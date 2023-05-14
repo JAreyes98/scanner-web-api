@@ -1,8 +1,7 @@
-package middleware
+package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"scanner-web-api/auth"
 )
 
 func Auth() gin.HandlerFunc {
@@ -13,7 +12,7 @@ func Auth() gin.HandlerFunc {
 			context.Abort()
 			return
 		}
-		err := auth.ValidateToken(tokenString)
+		err := ValidateToken(tokenString)
 		if err != nil {
 			context.JSON(401, gin.H{"error": err.Error()})
 			context.Abort()

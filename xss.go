@@ -1,4 +1,4 @@
-package middleware
+package main
 
 import (
 	xss "github.com/araujo88/gin-gonic-xss-middleware"

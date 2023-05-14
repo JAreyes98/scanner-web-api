@@ -1,4 +1,4 @@
-package models
+package main
 
 type Planta struct {
 	Planta     string `json:"planta" gorm:"column:Planta"`

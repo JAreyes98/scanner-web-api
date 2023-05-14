@@ -1,4 +1,4 @@
-package models
+package main
 
 type Bodega struct {
 	Codigo string `json:"codigo" gorm:"column:BODEGA"`

@@ -1,4 +1,4 @@
-package models
+package main
 
 type Camion struct {
 	ID         uint   `json:"id" gorm:"column:Camion"`

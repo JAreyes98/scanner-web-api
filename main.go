@@ -2,34 +2,31 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"scanner-web-api/controllers"
-	"scanner-web-api/dbsetup"
-	"scanner-web-api/middleware"
 )
 
 func main() {
 	gin.SetMode(gin.DebugMode)
 	r := gin.Default()
-	r.Use(middleware.CorsMiddleware())
-	r.Use(middleware.XssMiddleware())
+	r.Use(CorsMiddleware())
+	r.Use(XssMiddleware())
 	//Uncomment when mode is ReleaseMode
 	//r.Use(middleware.SecurityMiddleware())
 
-	dbsetup.ConnectDatabase()
+	ConnectDatabase()
 	apiAuth := r.Group("/api/auth")
-	apiAuth.POST("/jwt", controllers.GenerateToken)
+	apiAuth.POST("/jwt", GenerateToken)
 
-	api := r.Group("/api/v1").Use(middleware.Auth())
-	api.GET("/products", controllers.AllProducts)
-	api.GET("/products/:barcode", controllers.ProductSearch)
+	api := r.Group("/api/v1").Use(Auth())
+	api.GET("/products", AllProducts)
+	api.GET("/products/:barcode", ProductSearch)
 
-	api.GET("/catalogs/plants", controllers.AllPlantas)
-	api.GET("/catalogs/trucks", controllers.AllCamiones)
-	api.GET("/catalogs/warehouse", controllers.AllBodegas)
+	api.GET("/catalogs/plants", AllPlantas)
+	api.GET("/catalogs/trucks", AllCamiones)
+	api.GET("/catalogs/warehouse", AllBodegas)
 
-	api.POST("/inventory/production", controllers.CheckProductionStock)
-	api.POST("/inventory/order", controllers.CheckOrder)
-	api.POST("/inventory/warehouse", controllers.CheckWarehouse)
+	api.POST("/inventory/production", CheckProductionStock)
+	api.POST("/inventory/order", CheckOrder)
+	api.POST("/inventory/warehouse", CheckWarehouse)
 
 	if err := r.Run(":8080"); err != nil {
 		panic(err)

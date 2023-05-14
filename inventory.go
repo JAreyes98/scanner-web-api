@@ -1,4 +1,4 @@
-package models
+package main
 
 type ProductionInventoryDto struct {
 	Date         string `json:"date"`

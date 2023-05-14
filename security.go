@@ -1,4 +1,4 @@
-package middleware
+package main
 
 import (
 	"github.com/gin-contrib/secure"

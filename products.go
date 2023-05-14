@@ -1,16 +1,14 @@
-package controllers
+package main
 
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"scanner-web-api/dbsetup"
-	"scanner-web-api/models"
 )
 
 func AllProducts(c *gin.Context) {
-	var data []models.Product
-	err := dbsetup.DB.Find(&data).Error
+	var data []Product
+	err := DB.Find(&data).Error
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -18,10 +16,10 @@ func AllProducts(c *gin.Context) {
 }
 
 func ProductSearch(c *gin.Context) {
-	var product models.Product
+	var product Product
 	barcode := c.Param("barcode")
 
-	if err := dbsetup.DB.Where(" \"CodBarraSupermercado\" = ?", barcode).First(&product).Error; err != nil {
+	if err := DB.Where(" \"CodBarraSupermercado\" = ?", barcode).First(&product).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "No se ha encontrado el producto con codigo de barras: " + barcode})
 		return
 	}

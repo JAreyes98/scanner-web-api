@@ -1,4 +1,4 @@
-package dbsetup
+package main
 
 import (
 	"gorm.io/driver/mysql"
