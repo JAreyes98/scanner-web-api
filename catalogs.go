@@ -36,10 +36,10 @@ func AllBodegas(c *gin.Context) {
 
 func AllOrders(c *gin.Context) {
 
-	//var data []Bodega
 	//err := DB.Find(&data).Error
 	//if err != nil {
 	//	fmt.Println(err)
 	//}
-	c.JSON(http.StatusOK, gin.H{"data": Order{ID: 1}})
+	data := []Order{{ID: 1}}
+	c.JSON(http.StatusOK, gin.H{"data": data})
 }
