@@ -1,14 +1,13 @@
 FROM golang:1.18
 LABEL authors="jdreyes"
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
 COPY go.mod go.sum ./
 RUN go mod download
 
-COPY . /app
-RUN #go build -v -o /usr/local/bin/app ./...
+COPY . .
 
 EXPOSE 8080
 
