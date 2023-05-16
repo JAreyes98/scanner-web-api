@@ -4,7 +4,7 @@ type ProductionInventoryDto struct {
 	Date         string `json:"date"`
 	Planta       Planta `json:"planta"`
 	Barcode      string `json:"barcode"`
-	IdInventario int    `json:"idInventario"`
+	IdInventario string `json:"idInventario"`
 }
 
 type ChargeInventory struct {
@@ -18,5 +18,5 @@ type WarehouseInventory struct {
 	Date         string `json:"date"`
 	Bodega       Bodega `json:"bodega"`
 	Barcode      string `json:"barcode"`
-	IdInventario int    `json:"idInventario"`
+	IdInventario string `json:"idInventario"`
 }
