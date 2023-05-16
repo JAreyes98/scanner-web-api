@@ -10,7 +10,7 @@ type ProductionInventoryDto struct {
 type ChargeInventory struct {
 	Date    string `json:"date"`
 	Camion  Camion `json:"camion"`
-	OrderId int    `json:"orderId"`
+	OrderId string `json:"orderId"`
 	Barcode string `json:"barcode"`
 }
 
