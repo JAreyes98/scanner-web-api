@@ -26,6 +26,7 @@ func main() {
 	api.GET("/catalogs/trucks", AllCamiones)
 	api.GET("/catalogs/warehouse", AllBodegas)
 	api.GET("/catalogs/orders", AllOrders)
+	api.GET("/catalogs/inventorySearch", FindInventory)
 
 	api.POST("/inventory/production", CheckProductionStock)
 	api.POST("/inventory/order", CheckOrder)

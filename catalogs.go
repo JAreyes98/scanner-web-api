@@ -35,11 +35,34 @@ func AllBodegas(c *gin.Context) {
 }
 
 func AllOrders(c *gin.Context) {
+	var data []Order
+	err := DB.Find(&data).Error
+	if err != nil {
+		fmt.Println(err)
+	}
+	c.JSON(http.StatusOK, gin.H{"data": data})
+}
 
-	//err := DB.Find(&data).Error
-	//if err != nil {
-	//	fmt.Println(err)
-	//}
-	data := []Order{{ID: 1}}
+func FindInventory(c *gin.Context) {
+	warehouse := c.Query("warehouse")
+	plant := c.Query("plant")
+
+	var query string = ""
+
+	if warehouse != "" {
+		query += " bodega='" + warehouse + "'"
+	}
+
+	if plant != "" && warehouse != "" {
+		query += " and Planta='" + plant + "'"
+	} else if plant != "" {
+		query += " Planta='" + plant + "'"
+	}
+
+	var data []Inventory
+	err := DB.Where(query).Find(&data).Error
+	if err != nil {
+		fmt.Println(err)
+	}
 	c.JSON(http.StatusOK, gin.H{"data": data})
 }
