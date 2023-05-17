@@ -46,6 +46,7 @@ func AllOrders(c *gin.Context) {
 func FindInventory(c *gin.Context) {
 	warehouse := c.Query("warehouse")
 	plant := c.Query("plant")
+	date := c.Query("date")
 
 	var query string = ""
 
@@ -57,6 +58,12 @@ func FindInventory(c *gin.Context) {
 		query += " and Planta='" + plant + "'"
 	} else if plant != "" {
 		query += " Planta='" + plant + "'"
+	}
+
+	if date != "" && (warehouse != "" || plant != "") {
+		query += " and cast(fecha as date) ='" + date + "'"
+	} else if date != "" {
+		query += " cast(fecha as date)='" + date + "'"
 	}
 
 	var data []Inventory
