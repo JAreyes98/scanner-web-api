@@ -32,7 +32,7 @@ func main() {
 	api.POST("/inventory/order", CheckOrder)
 	api.POST("/inventory/warehouse", CheckWarehouse)
 
-	webport := os.Getenv("PORT")
+	webport := os.Getenv("CACIQUE_API_PORT")
 
 	fmt.Println("Puerto ejecucion: ", webport)
 	if err := r.Run(":" + webport); err != nil {
